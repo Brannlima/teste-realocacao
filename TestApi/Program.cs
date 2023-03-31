@@ -3,7 +3,10 @@ using Microsoft.Extensions.Configuration;
 using Npgsql.EntityFrameworkCore.PostgreSQL;
 using System.IO;
 using TestApi.Models;
+using TestApi.Data;
 using Microsoft.OpenApi.Models;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 
 public class Program
 {
@@ -19,11 +22,24 @@ public class Program
             options => options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"))
         );
 
-        builder.Services.AddControllers();
+        builder.Services
+            .AddControllers()
+            .AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+            });
 
         builder.Services.AddSwaggerGen(c =>
         {
             c.SwaggerDoc("v1", new OpenApiInfo { Title = "TestApi", Version = "v1" });
+        });
+
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy(
+                "AllowAnyOrigin",
+                builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
+            );
         });
 
         var app = builder.Build();
@@ -39,29 +55,34 @@ public class Program
 
         app.UseRouting();
 
+        app.UseCors("AllowAnyOrigin");
+
         app.UseAuthentication();
 
         app.UseAuthorization();
 
-        app.UseExceptionHandler("/error"); // Adiciona o middleware de tratamento de erros
+        app.UseExceptionHandler("/error");
 
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapControllers();
-            endpoints.MapGet(
-                "/",
-                async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                }
-            );
         });
 
         app.Run();
     }
 
+    public void ConfigureServices(IServiceCollection services)
+    {
+        services
+            .AddControllers()
+            .AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+            });
+    }
+
     private static void Configure(IApplicationBuilder app)
     {
-        // O middleware de roteamento de endpoint já foi adicionado no método Main
+        app.UseExceptionHandler("/error");
     }
 }

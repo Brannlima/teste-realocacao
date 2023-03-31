@@ -10,11 +10,11 @@
         "projectUniqueName": "D:\\Dev\\Testes\\teste-realocacao\\TestApi\\TestApi.csproj",
         "projectName": "TestApi",
         "projectPath": "D:\\Dev\\Testes\\teste-realocacao\\TestApi\\TestApi.csproj",
-        "packagesPath": "C:\\Users\\Branderson Lima\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\Branderson\\.nuget\\packages\\",
         "outputPath": "D:\\Dev\\Testes\\teste-realocacao\\TestApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Branderson Lima\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Branderson\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -44,13 +44,13 @@
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[7.0.0, )"
+              "version": "[7.0.4, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.0, )"
+              "version": "[7.0.4, )"
             },
             "Microsoft.EntityFrameworkCore.InMemory": {
               "target": "Package",
@@ -58,7 +58,7 @@
             },
             "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
-              "version": "[7.0.0, )"
+              "version": "[7.0.4, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
@@ -79,6 +79,14 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"
+            },
+            "System.ComponentModel.Annotations": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Z.EntityFramework.Plus.EFCore": {
+              "target": "Package",
+              "version": "[7.20.0, )"
             },
             "dotenv.net": {
               "target": "Package",
